@@ -1,0 +1,26 @@
+{
+  "name": "i18n-accessor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "create": "npm run build && npm run test",
+    "build": "tsc -p ."
+  },
+  "author": "mosle (yskysd@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@types/jest": "^28.1.2",
+    "babel-jest": "^28.1.1",
+    "jest": "^28.1.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "dot-prop": "^7.2.0"
+  }
+}
