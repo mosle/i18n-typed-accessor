@@ -29,6 +29,20 @@ const en = {
       },
     },
   },
+  placeholder: {
+    a: {
+      value: "{0}s passed.",
+      b: {
+        value: "{0}s {1}s passed.",
+        c: {
+          value: "{0}s {1}s {2}s passed.",
+          d: {
+            value: "{0}s {1}s {2}s {3}s passed.",
+          },
+        },
+      },
+    },
+  },
 };
 
 describe("accessor", () => {
@@ -87,5 +101,21 @@ describe("accessorLocked", () => {
     const accessor = generateAccessor({ en, ja: en }, en);
     const i18n = generateLockedAccessor("ja", accessor);
     expect(i18n("section1.a.b.value")).toBe("1b");
+  });
+});
+
+describe("placeholder", () => {
+  test("", () => {
+    const accessor = generateAccessor({ en, ja: en }, en);
+    const i18n = generateLockedAccessor("ja", accessor);
+    expect(i18n("placeholder.a.b.c.d.value", { variables: [100, 101, 102, 103] })).toBe("100s 101s 102s 103s passed.");
+  });
+  test("", () => {
+    const accessor = generateAccessor({ en }, en);
+    expect(accessor("en", "placeholder.a.value")).toBe("[N/A]s passed.");
+  });
+  test("", () => {
+    const accessor = generateAccessor({ en }, en);
+    expect(accessor("en", "placeholder.a.value", { variables: [1000] })).toBe("1000s passed.");
   });
 });

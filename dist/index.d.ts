@@ -1,15 +1,16 @@
 declare type OptionType = {
     nl2br?: boolean;
+    variables?: Array<number | string>;
 };
 declare type Dict = {
     [key: string]: Dict | string | number;
 };
 export declare function generateAccessor<T extends {
     [key: string]: Dict;
-}, S extends Dict>(injectionData: T, typeHintDictionary: S): (lang: keyof T & string, path: I18nTypeHints<typeof typeHintDictionary>, option?: OptionType) => string;
+}, S extends Dict>(injectionData: T, typeHintDictionary: S, placeholder?: RegExp): (lang: keyof T & string, path: I18nTypeHints<typeof typeHintDictionary>, option?: OptionType) => string;
 export declare function generateLockedAccessor<T extends ReturnType<typeof generateAccessor<{
     [key: Parameters<T>[0] & string]: Dict;
-}, {}>>>(lang: Parameters<T>[0], accessor: T): (path: Parameters<T>[1]) => string;
+}, {}>>>(lang: Parameters<T>[0], accessor: T): (path: Parameters<T>[1], option?: Parameters<T>[2]) => string;
 declare type LevelLeaf<T extends Dict> = {
     [Key in keyof T & string]: `${Key}`;
 }[keyof T & string];
